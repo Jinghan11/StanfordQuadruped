@@ -4,17 +4,17 @@ from pupper.HardwareConfig import PS4_COLOR, PS4_DEACTIVATED_COLOR
 from enum import Enum
 
 # TODO: put these somewhere else
-class PWMParams:
-    def __init__(self):
+class PWMParams: # 创建PWMParams类
+    def __init__(self): # 初始化属性，PWMParams有pins，range，freq等属性
         self.pins = np.array([[2, 14, 18, 23], [3, 15, 27, 24], [4, 17, 22, 25]])
         self.range = 4000
-        self.freq = 250
+        self.freq = 250 # 频率为250Hz
 
 
 class ServoParams:
     def __init__(self):
         self.neutral_position_pwm = 1500  # Middle position
-        self.micros_per_rad = MICROS_PER_RAD  # Must be calibrated
+        self.micros_per_rad = MICROS_PER_RAD  # Must be calibrated，= 11.333 * 180.0 / np.pi
 
         # The neutral angle of the joint relative to the modeled zero-angle in degrees, for each joint
         self.neutral_angle_degrees = NEUTRAL_ANGLE_DEGREES
@@ -23,7 +23,7 @@ class ServoParams:
             [[1, 1, 1, 1], [-1, 1, -1, 1], [1, -1, 1, -1]]
         )
 
-    @property
+    @property # 将neutral_angle变成一个属性直接读取
     def neutral_angles(self):
         return self.neutral_angle_degrees * np.pi / 180.0  # Convert to radians
 
@@ -83,18 +83,18 @@ class Configuration:
         ######################## GEOMETRY ######################
         self.LEG_FB = 0.10  # front-back distance from center line to leg axis
         self.LEG_LR = 0.04  # left-right distance from center line to leg plane
-        self.LEG_L2 = 0.115
-        self.LEG_L1 = 0.1235
+        self.LEG_L2 = 0.115 # lower link length
+        self.LEG_L1 = 0.1235# upper link length
         self.ABDUCTION_OFFSET = 0.03  # distance from abduction axis to leg
         self.FOOT_RADIUS = 0.01
 
-        self.HIP_L = 0.0394
-        self.HIP_W = 0.0744
-        self.HIP_T = 0.0214
+        self.HIP_L = 0.0394 # 这是啥
+        self.HIP_W = 0.0744 #  这是啥 这是啥
+        self.HIP_T = 0.0214 #  这是啥 这是啥 这是啥 这是啥
         self.HIP_OFFSET = 0.0132
 
         self.L = 0.276
-        self.W = 0.100
+        self.W = 0.100 # body width
         self.T = 0.050
 
         self.LEG_ORIGINS = np.array(
